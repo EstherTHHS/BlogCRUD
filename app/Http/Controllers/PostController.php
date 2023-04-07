@@ -39,7 +39,8 @@ class PostController extends Controller
 
         $request->validate([
             'title' => 'required',
-            'post' => 'required'
+            'post' => 'required',
+            'is_active' => 'required'
         ]);
 
         Post::create([
@@ -85,7 +86,8 @@ class PostController extends Controller
     {
         $request->validate([
             'title' => 'required',
-            'post' => 'required'
+            'post' => 'required',
+            'is_active' => 'required'
         ]);
 
         $result = Post::where('id', $id)->first();
