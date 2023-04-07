@@ -33,9 +33,6 @@
               <div>
                   <input type="checkbox" name="is_active"/>
               </div>
-              @if($errors->has('is_active'))
-              <div class="error text-danger">{{ $errors->first('is_active') }}</div>
-            @endif
           </div>
 
             <a href="{{ url('post')}}" class="btn btn-lg btn-primary m-3">BACK</a>

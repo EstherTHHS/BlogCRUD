@@ -33,9 +33,7 @@
               <label for="" class="form-label">Checked or Unchecked</label>
               <div>
                 <input type="checkbox" name="is_active" {{($data->is_active===1)?"checked":""}} />
-                @if($errors->has('is_active'))
-                <div class="error text-danger">{{ $errors->first('is_active') }}</div>
-                @endif
+               
               </div>
               
 
