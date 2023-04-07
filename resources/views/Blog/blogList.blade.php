@@ -36,7 +36,7 @@
           <form action="{{ route('blog.destroy',$val->id) }}" method="POST">
             @csrf
             @method("DELETE")
-            <button class="btn btn-danger" onclick="confirm('Do you want to delete?')"><i class="fa-solid fa-trash-can"></i></button>
+            <button class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this record?')"><i class="fa-solid fa-trash-can"></i></button>
             </form>
           </td>
       </tr>
