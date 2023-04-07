@@ -37,6 +37,11 @@ class PostController extends Controller
     public function store(Request $request)
     {
 
+        $request->validate([
+            'title' => 'required',
+            'post' => 'required'
+        ]);
+
         Post::create([
             "title" => $request->title,
             "post" => $request->post,
@@ -78,6 +83,11 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'title' => 'required',
+            'post' => 'required'
+        ]);
+
         $result = Post::where('id', $id)->first();
         $result->update([
             "title" => $request->title,

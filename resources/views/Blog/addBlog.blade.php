@@ -14,13 +14,19 @@
       @csrf
             <div class="mb-3 ">
                 <label for="exampleFormControlInput1" class="form-label"> Blog Title</label>
-                <input type="text" class="form-control" id="exampleFormControlInput1" name="title" placeholder="" @required(true)>
+                <input type="text" class="form-control" id="exampleFormControlInput1" name="title" placeholder="">
+                @if($errors->has('title'))
+                <div class="error text-danger">{{ $errors->first('title') }}</div>
+              @endif
             </div>
 
             <div class="mb-3 ">
                 <label for="exampleFormControlInput1" class="form-label">BLog</label>
                
-                  <textarea type="text" class="form-control" id="exampleFormControlInput1" name="blog"  cols="30" rows="10" @required(true)></textarea>
+                  <textarea type="text" class="form-control" id="exampleFormControlInput1" name="blog"  cols="30" rows="10" ></textarea>
+                  @if($errors->has('blog'))
+                  <div class="error text-danger">{{ $errors->first('blog') }}</div>
+                @endif
                
             </div>
             <a href="{{ url('blog')}}" class="btn btn-lg btn-primary m-3">BACK</a>

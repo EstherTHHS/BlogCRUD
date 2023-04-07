@@ -42,6 +42,11 @@ class BlogController extends Controller
 
         // dd($request->all());
 
+        $request->validate([
+            'title' => 'required',
+            'blog' => 'required'
+        ]);
+
         Blog::create($request->all());
         return redirect()->route('blog.index');
     }
@@ -80,6 +85,11 @@ class BlogController extends Controller
      */
     public function update(Request $request, $id)
     {
+
+        $request->validate([
+            'title' => 'required',
+            'blog' => 'required'
+        ]);
         $result = Blog::where('id', $id)->first();
         // $result->update([
         //     'title' => $request->title,

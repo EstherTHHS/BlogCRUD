@@ -14,12 +14,18 @@
       @csrf
             <div class="mb-3 ">
                 <label for="exampleFormControlInput1" class="form-label"> POST Title</label>
-                <input type="text" class="form-control" id="exampleFormControlInput1" name="title" placeholder="" @required(true)>
+                <input type="text" class="form-control" id="exampleFormControlInput1" name="title" placeholder="" >
+                @if($errors->has('title'))
+                <div class="error text-danger">{{ $errors->first('title') }}</div>
+              @endif
             </div>
 
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">POST</label>
-                <input type="text" class="form-control" id="exampleFormControlInput1" name="post" placeholder=""  @required(true)>
+                <input type="text" class="form-control" id="exampleFormControlInput1" name="post" placeholder="" >
+                @if($errors->has('post'))
+                <div class="error text-danger">{{ $errors->first('post') }}</div>
+              @endif
             </div>
 
             <div class="mb-3">
@@ -27,6 +33,9 @@
               <div>
                   <input type="checkbox" name="is_active"/>
               </div>
+              @if($errors->has('is_active'))
+              <div class="error text-danger">{{ $errors->first('is_active') }}</div>
+            @endif
           </div>
 
             <a href="{{ url('post')}}" class="btn btn-lg btn-primary m-3">BACK</a>
