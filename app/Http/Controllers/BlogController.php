@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\BlogRequest;
 use App\Models\Blog;
 use Illuminate\Http\Request;
 
@@ -37,17 +38,17 @@ class BlogController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(BlogRequest $request)
     {
 
         // dd($request->all());
-
-        $request->validate([
-            'title' => 'required',
-            'blog' => 'required'
-        ]);
-
-        Blog::create($request->all());
+        // $request->validate([
+        //     'title' => 'required',
+        //     'blog' => 'required'
+        // ]);
+        // Blog::create($request->all());
+        $data = $request->validated();
+        Blog::create($data);
         return redirect()->route('blog.index');
     }
 
@@ -83,20 +84,22 @@ class BlogController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(BlogRequest $request, $id)
     {
 
-        $request->validate([
-            'title' => 'required',
-            'blog' => 'required'
-        ]);
+        // $request->validate([
+        //     'title' => 'required',
+        //     'blog' => 'required'
+        // ]);
         $result = Blog::where('id', $id)->first();
         // $result->update([
         //     'title' => $request->title,
         //     'blog' => $request->blog
 
         // ]);
-        $result->update($request->all());
+        // $result->update($request->all());
+        $data = $request->validated();
+        $result->update($data);
         return redirect()->route('blog.index');
     }
 

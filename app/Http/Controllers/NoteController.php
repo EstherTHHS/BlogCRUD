@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\NoteRequest;
 use App\Models\Note;
 use Illuminate\Http\Request;
 
@@ -18,16 +19,10 @@ class NoteController extends Controller
         return view("Note.addNote");
     }
 
-    public function store(Request $request)
+    public function store(NoteRequest $request)
     {
-        $request->validate([
-            'title' => 'required',
-            'note' => 'required'
-        ]);
-        Note::create([
-            "title" => $request->title,
-            "note" => $request->note
-        ]);
+        $data = $request->validated();
+        Note::create($data);
         return redirect()->route('note.index');
     }
 
@@ -37,13 +32,10 @@ class NoteController extends Controller
         return view("Note.editNote", compact('note'));
     }
 
-    public function update(Request $request, Note $note)
+    public function update(NoteRequest $request, Note $note)
     {
-        $request->validate([
-            'title' => 'required',
-            'note' => 'required'
-        ]);
-        $note->update($request->all());
+        $data = $request->validated();
+        $note->update($data);
         return redirect()->route("note.index");
     }
 
