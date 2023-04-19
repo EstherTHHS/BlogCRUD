@@ -14,7 +14,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $data = Post::all();
+        $data = Post::paginate(3);
         return view("backend.Post.listPost", compact("data"));
     }
 

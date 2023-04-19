@@ -72,6 +72,7 @@
                   </tbody>
                 </table>
               </div>
+              {{ $notes->links() }}
               <!-- /.card-body -->
             </div>
             <!-- /.card -->

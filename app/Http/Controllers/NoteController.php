@@ -10,7 +10,7 @@ class NoteController extends Controller
 {
     public function index()
     {
-        $notes = Note::all();
+        $notes = Note::paginate(3);
         return view("backend.Note.noteList", compact('notes'));
     }
 

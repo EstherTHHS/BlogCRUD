@@ -81,6 +81,7 @@
                 </tbody>
               </table>
             </div>
+            {{ $data->links() }}
             <!-- /.card-body -->
           </div>
           <!-- /.card -->
