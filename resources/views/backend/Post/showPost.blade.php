@@ -1,8 +1,7 @@
-@extends('layout')
+@extends("backend.layout.master")
+@section('title', 'showPost')
 
-@section('title', 'ShowPost')
-
-@section('Main')
+@section('content')
  
  <a href="{{ route("post.index") }}" class="btn btn-primary mt-4">Back</a>
   <table class="table">

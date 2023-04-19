@@ -15,7 +15,7 @@ class PostController extends Controller
     public function index()
     {
         $data = Post::all();
-        return view("Post.listPost", compact("data"));
+        return view("backend.Post.listPost", compact("data"));
     }
 
     /**
@@ -25,7 +25,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view("Post.addPost");
+        return view("backend.Post.addPost");
     }
 
     /**
@@ -59,7 +59,7 @@ class PostController extends Controller
     public function show($id)
     {
         $data = Post::where('id', $id)->first();
-        return view("Post.showPost", compact('data'));
+        return view("backend.Post.showPost", compact('data'));
     }
 
     /**
@@ -71,7 +71,7 @@ class PostController extends Controller
     public function edit($id)
     {
         $data = Post::where('id', $id)->first();
-        return view("Post.editPost", compact('data'));
+        return view("backend.Post.editPost", compact('data'));
     }
 
     /**

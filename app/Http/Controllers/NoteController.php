@@ -11,12 +11,12 @@ class NoteController extends Controller
     public function index()
     {
         $notes = Note::all();
-        return view("Note.noteList", compact('notes'));
+        return view("backend.Note.noteList", compact('notes'));
     }
 
     public function create()
     {
-        return view("Note.addNote");
+        return view("backend.Note.addNote");
     }
 
     public function store(NoteRequest $request)
@@ -29,7 +29,7 @@ class NoteController extends Controller
     public function edit(Note $note)
     {
 
-        return view("Note.editNote", compact('note'));
+        return view("backend.Note.editNote", compact('note'));
     }
 
     public function update(NoteRequest $request, Note $note)
@@ -41,7 +41,7 @@ class NoteController extends Controller
 
     public function show(Note $note)
     {
-        return view("Note.showNote", compact('note'));
+        return view("backend.Note.showNote", compact('note'));
     }
     public function destroy(Note $note)
     {

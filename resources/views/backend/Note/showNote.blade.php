@@ -1,7 +1,7 @@
-@extends('layout')
+@extends("backend.layout.master")
+@section('title', 'ShowNote')
 
-@section('title', 'SHOWNote')
-@section("Main")
+@section('content')
   
   <a href="{{ route("note.index") }}" class="btn btn-lg btn-success m-3">Back</a>
   <table class="table">

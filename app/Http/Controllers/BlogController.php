@@ -16,10 +16,11 @@ class BlogController extends Controller
      */
     public function index()
     {
-        $data = Blog::all();
+        // $data = Blog::all();
+        $data = Blog::paginate(3);
 
         // dd($data);
-        return view("Blog.blogList", compact('data'));
+        return view("backend.Blog.blogList", compact('data'));
     }
 
     /**
@@ -29,7 +30,7 @@ class BlogController extends Controller
      */
     public function create()
     {
-        return view("Blog.addBlog");
+        return view("backend.Blog.addBlog");
     }
 
     /**
@@ -61,7 +62,7 @@ class BlogController extends Controller
     public function show($data)
     {
         $result = Blog::where('id', $data)->first();
-        return view("Blog.showBlog", compact('result'));
+        return view("backend.Blog.showBlog", compact('result'));
     }
 
     /**
@@ -74,7 +75,7 @@ class BlogController extends Controller
     {
         $result = Blog::where('id', $id)->first();
         // dd($result);
-        return view("Blog.editBlog", compact('result'));
+        return view("backend.Blog.editBlog", compact('result'));
     }
 
     /**

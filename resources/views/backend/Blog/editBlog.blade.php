@@ -1,8 +1,5 @@
-@extends('layout')
-
-@section('title', 'EditBlog')
-
-@section("Main")
+@extends("backend.layout.master")
+@section('content')
   <div class="p-5">
 
     <div class="col col-6 justify-content-center">

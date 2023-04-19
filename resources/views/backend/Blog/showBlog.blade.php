@@ -1,7 +1,5 @@
-@extends('layout')
-
-@section('title', 'SHOWBLOG')
-@section("Main")
+@extends("backend.layout.master")
+@section('content')
   
   <a href="{{ route('blog.index') }}" class="btn btn-lg btn-success m-3">Back</a>
   <table class="table">
