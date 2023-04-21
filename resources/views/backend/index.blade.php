@@ -123,7 +123,7 @@
         <!-- /.card -->
 
         <!-- DIRECT CHAT -->
-        {{-- <div class="card direct-chat direct-chat-primary">
+         <div class="card direct-chat direct-chat-primary">
           <div class="card-header">
             <h3 class="card-title">Direct Chat</h3>
 
@@ -321,11 +321,11 @@
             </form>
           </div>
           <!-- /.card-footer-->
-        </div> --}}
+        </div> 
         <!--/.direct-chat -->
 
         <!-- TO DO List -->
-        {{-- <div class="card">
+    <div class="card">
           <div class="card-header">
             <h3 class="card-title">
               <i class="ion ion-clipboard mr-1"></i>
@@ -452,7 +452,7 @@
           <div class="card-footer clearfix">
             <button type="button" class="btn btn-primary float-right"><i class="fas fa-plus"></i> Add item</button>
           </div>
-        </div> --}}
+        </div> 
         <!-- /.card -->
       </section>
       <!-- /.Left col -->
@@ -460,7 +460,7 @@
       <section class="col-lg-5 connectedSortable">
 
         <!-- Map card -->
-        {{-- <div class="card bg-gradient-primary">
+        <div class="card bg-gradient-primary">
           <div class="card-header border-0">
             <h3 class="card-title">
               <i class="fas fa-map-marker-alt mr-1"></i>
@@ -501,7 +501,7 @@
             </div>
             <!-- /.row -->
           </div>
-        </div> --}}
+        </div> 
         <!-- /.card -->
 
         <!-- solid sales graph -->

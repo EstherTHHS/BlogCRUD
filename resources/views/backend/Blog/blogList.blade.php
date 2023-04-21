@@ -1,4 +1,4 @@
-@extends("backend.layout.master")
+@extends('backend.layout.master')
 
 
 @section('content')
@@ -27,67 +27,84 @@
   <a href="{{ route('blog.create') }}" class="btn  btn-light m-3 ml-auto p-2"><i class="fa-solid fa-square-plus" style="color: #c49003;"></i><span>ADD Blog</span></a>
 </div>
 
-  <section class="content">
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-12">
-          <div class="card">
-            <!-- /.card-header -->
-            <div class="card-body">
-              <table id="example2" class="table table-bordered table-hover">
-                <thead>
-                <tr>
-                  <th scope="col">No</th>
-                  <th scope="col">Id</th>
-                  <th scope="col">BlogTitle</th>
-                  <th scope="col">Blog</th>
-                  <th scope="col">Action</th>
-                </tr>
-                </thead>
-                <tbody>
-                  @foreach($data as $val)
-                  <tr>
-                    <th>{{ $loop->iteration }}</th>
-                    <th scope="row">{{$val->id}}</th>
-                    <td>{{$val->title}}</td>
-                    <td>{{$val->blog}}</td>
-                    <td>
-                      <a href="{{ route('blog.edit',$val->id) }}" class="btn btn-primary">
-                      <i class="fa-solid  fa-pen-to-square"></i></a>
-                    </td>
-                    <td>
-                      <a href="{{ route('blog.show',$val->id) }}" class="btn btn-success">
-                        <i class="fa-solid fa-magnifying-glass"></i>
-                      </a>
-                    </td>
-                    <td>
-                      <form action="{{ route('blog.destroy',$val->id) }}" method="POST">
-                        @csrf
-                        @method("DELETE")
-                        <button class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this record?')"><i class="fa-solid fa-trash-can"></i></button>
-                        </form>
-                      </td>
-                  </tr>
-                @endforeach
-                </tbody>
-              </table>
-             
-            </div>
-            <!-- /.card-body -->
+<!-- Main content -->
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">DataTable with minimal features & hover style</h3>
           </div>
-          <!-- /.card -->
-
+          <!-- /.card-header -->
+          <div class="card-body">
+            <table id="example2" class="table table-bordered table-hover">
+              <thead>
+              <tr>
+                <th scope="col">No</th>
+                <th scope="col">Id</th>
+                <th scope="col">BlogTitle</th>
+                <th scope="col">Blog</th>
+                <th scope="col" >Action</th>
+                <th scope="col">Action</th>
+                <th scope="col">Action</th>
+              </tr>
+              </thead>
+              <tbody>
+                @foreach ($data as $val )
+                <tr>
+                  <th>{{ $loop->iteration }}</th>
+                  <td>{{ $val->id }}</td>
+                  <td>{{ $val->title }}</td>
+                  <td>{{ $val->blog }}</td>
+                  <td>
+                    <a href="{{ route('blog.edit',$val->id) }}" class="btn btn-primary">
+                    <i class="fa-solid  fa-pen-to-square"></i></a>
+                  </td>
+                  <td>
+                    <a href="{{ route('blog.show',$val->id) }}" class="btn btn-success">
+                      <i class="fa-solid fa-magnifying-glass"></i>
+                    </a>
+                  </td>
+                  <td>
+                    <form action="{{ route('blog.destroy',$val->id) }}" method="POST">
+                      @csrf
+                      @method("DELETE")
+                      <button class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this record?')"><i class="fa-solid fa-trash-can"></i></button>
+                      </form>
+                    </td>
+                </tr>
+                </tr>
+               
+                @endforeach
+              
           
-          <!-- /.card -->
+              
+              </tbody>
+              {{-- <tfoot>
+              <tr>
+                <th scope="col">No</th>
+                <th scope="col">Id</th>
+                <th scope="col">BlogTitle</th>
+                <th scope="col">Blog</th>
+                <th scope="col">Action</th>
+              </tr>
+              </tfoot> --}}
+            </table>
+          </div>
+          <!-- /.card-body -->
         </div>
-        <!-- /.col -->
+        <!-- /.card -->
       </div>
-      <!-- /.row -->
+      <!-- /.col -->
     </div>
-    {{ $data->links() }}
-    <!-- /.container-fluid -->
-  </section>
-
+    <!-- /.row -->
+  </div>
+  <!-- /.container-fluid -->
 </section>
-@endsection
+<!-- /.content -->
 
+
+
+
+@endsection

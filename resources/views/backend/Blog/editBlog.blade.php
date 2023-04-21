@@ -1,4 +1,4 @@
-@extends("backend.layout.master")
+@extends('backend.layout.master')
 @section('content')
   <div class="p-5">
 

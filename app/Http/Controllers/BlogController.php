@@ -9,6 +9,11 @@ use Illuminate\Http\Request;
 
 class BlogController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -16,8 +21,10 @@ class BlogController extends Controller
      */
     public function index()
     {
-        // $data = Blog::all();
-        $data = Blog::paginate(3);
+        $data = Blog::all();
+        // $data = Blog::limit(2)->get();
+
+        // return response()->json($data);
 
         // dd($data);
         return view("backend.Blog.blogList", compact('data'));

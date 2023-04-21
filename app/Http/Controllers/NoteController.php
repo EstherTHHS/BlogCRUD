@@ -8,9 +8,14 @@ use Illuminate\Http\Request;
 
 class NoteController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index()
     {
-        $notes = Note::paginate(3);
+        $notes = Note::all();
         return view("backend.Note.noteList", compact('notes'));
     }
 

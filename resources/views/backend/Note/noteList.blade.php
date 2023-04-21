@@ -1,4 +1,4 @@
-@extends("backend.layout.master")
+@extends('backend.layout.master')
 @section('title', 'ListPost')
 
 @section('content')
@@ -42,6 +42,8 @@
                     <th scope="col">Note Title</th>
                     <th scope="col">Note</th>
                     <th scope="col">Action</th>
+                    <th scope="col">Aciton</th>
+                    <th scope="col">Aciton</th>
                   </tr>
                   </thead>
                   <tbody>
@@ -72,7 +74,7 @@
                   </tbody>
                 </table>
               </div>
-              {{ $notes->links() }}
+              {{-- {{ $notes->links() }} --}}
               <!-- /.card-body -->
             </div>
             <!-- /.card -->

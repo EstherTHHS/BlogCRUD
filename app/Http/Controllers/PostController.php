@@ -7,6 +7,11 @@ use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +19,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $data = Post::paginate(3);
+        $data = Post::all();
         return view("backend.Post.listPost", compact("data"));
     }
 
