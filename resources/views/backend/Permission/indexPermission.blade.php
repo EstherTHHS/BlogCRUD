@@ -21,11 +21,11 @@
     </div><!-- /.container-fluid -->
   </section>
    
-  @can('blogCreate')
+  
   <div class="d-flex"> 
-    <a href="{{ route('blog.create') }}" class="btn  btn-light m-3 ml-auto p-2"><i class="fa-solid fa-square-plus" style="color: #c49003;"></i><span>ADD Blog</span></a>
+    <a href="{{ route('permission.create') }}" class="btn  btn-light m-3 ml-auto p-2"><i class="fa-solid fa-square-plus" style="color: #c49003;"></i><span>ADD Permission</span></a>
   </div>
-  @endcan
+ 
  
 
 <!-- Main content -->
@@ -44,11 +44,11 @@
               <tr>
                 <th scope="col">No</th>
                 <th scope="col">Id</th>
-                <th scope="col">BlogTitle</th>
-                <th scope="col">Blog</th>
+                <th scope="col">Name</th>
+                <th scope="col">createdAt</th>
                 <th scope="col" >Action</th>
                 <th scope="col">Action</th>
-                <th scope="col">Action</th>
+               
               </tr>
               </thead>
               <tbody>
@@ -56,30 +56,26 @@
                 <tr>
                   <th>{{ $loop->iteration }}</th>
                   <td>{{ $val->id }}</td>
-                  <td>{{ $val->title }}</td>
-                  <td>{{ $val->blog }}</td>
-                  @can('blogedit')
-                  <td>
-                    <a href="{{ route('blog.edit',$val->id) }}" class="btn btn-primary">
-                    <i class="fa-solid  fa-pen-to-square"></i></a>
-                  </td>
-                  @endcan
+                  <td>{{ $val->name }}</td>
+                  <td>{{ $val->created_at }}</td>
                  
                   <td>
-                    <a href="{{ route('blog.show',$val->id) }}" class="btn btn-success">
-                      <i class="fa-solid fa-magnifying-glass"></i>
-                    </a>
+                    <a href="{{ route('permission.edit',$val->id) }}" class="btn btn-primary">
+                    <i class="fa-solid  fa-pen-to-square"></i></a>
                   </td>
+                 
+                 
+                
 
-                  @can('blogdelete')
+                 
                   <td>
-                    <form action="{{ route('blog.destroy',$val->id) }}" method="POST">
+                    <form action="{{ route('permission.destroy',$val->id) }}" method="POST">
                       @csrf
                       @method("DELETE")
                       <button class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this record?')"><i class="fa-solid fa-trash-can"></i></button>
                       </form>
                     </td>
-                  @endcan
+                  
                   
                 </tr>
                 </tr>

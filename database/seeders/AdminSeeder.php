@@ -16,6 +16,7 @@ class AdminSeeder extends Seeder
      */
     public function run()
     {
+
         $admin = User::create([
             'name' => 'esther',
             'email' => 'esther@gmail.com',
@@ -28,6 +29,8 @@ class AdminSeeder extends Seeder
             'password' => Hash::make('htoo12345')
         ]);
 
+
+        //3
         $admin->assignRole('SuperAdmin');
         $editor->assignRole('Editor');
     }

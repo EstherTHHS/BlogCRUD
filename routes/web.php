@@ -4,8 +4,12 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\NoteController;
+use App\Http\Controllers\PermissionController;
+use App\Http\Controllers\roleController;
+use App\Http\Controllers\userController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -24,6 +28,10 @@ Route::get('/', function () {
 //route with resource
 Route::resource('blog', BlogController::class);
 Route::resource('post', PostController::class);
+Route::resource('permission', PermissionController::class);
+Route::resource('user', userController::class);
+Route::resource('role', roleController::class);
+
 
 //manually routeCRUD
 Route::get('note', [NoteController::class, 'index'])->name('note.index');
