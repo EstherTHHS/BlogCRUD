@@ -6,7 +6,7 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1>Blog</h1>
+          <h1>Permission</h1>
         </div>
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
@@ -21,11 +21,11 @@
     </div><!-- /.container-fluid -->
   </section>
    
-  
+  @can('addpermission')
   <div class="d-flex"> 
     <a href="{{ route('permission.create') }}" class="btn  btn-light m-3 ml-auto p-2"><i class="fa-solid fa-square-plus" style="color: #c49003;"></i><span>ADD Permission</span></a>
   </div>
- 
+ @endcan
  
 
 <!-- Main content -->
@@ -58,25 +58,22 @@
                   <td>{{ $val->id }}</td>
                   <td>{{ $val->name }}</td>
                   <td>{{ $val->created_at }}</td>
-                 
-                  <td>
-                    <a href="{{ route('permission.edit',$val->id) }}" class="btn btn-primary">
-                    <i class="fa-solid  fa-pen-to-square"></i></a>
-                  </td>
-                 
-                 
-                
+                @can('editpermission')
+                <td>
+                  <a href="{{ route('permission.edit',$val->id) }}" class="btn btn-primary">
+                  <i class="fa-solid  fa-pen-to-square"></i></a>
+                </td>
+                 @endcan
 
-                 
-                  <td>
-                    <form action="{{ route('permission.destroy',$val->id) }}" method="POST">
-                      @csrf
-                      @method("DELETE")
-                      <button class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this record?')"><i class="fa-solid fa-trash-can"></i></button>
-                      </form>
-                    </td>
-                  
-                  
+                 @can('delPermission')
+                 <td>
+                  <form action="{{ route('permission.destroy',$val->id) }}" method="POST">
+                    @csrf
+                    @method("DELETE")
+                    <button class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this record?')"><i class="fa-solid fa-trash-can"></i></button>
+                    </form>
+                  </td>
+                 @endcan
                 </tr>
                 </tr>
                

@@ -29,11 +29,11 @@ class PermissionSeeder extends Seeder
 
 
         $post_list = Permission::create(['name' => 'post_list']);
-        $note_list = Permission::create(['name' => 'note_list']);
+        // $note_list = Permission::create(['name' => 'note_list']);
         $permissionNav = Permission::create(['name' => 'permission_list']);
 
 
-        $super_Admin->givePermissionTo([$dashboard, $widget, $blog_List, $post_list, $note_list, $blog_Create, $blog_Edit, $blog_Delete, $permissionNav]);
+        $super_Admin->givePermissionTo([$dashboard, $widget, $blog_List, $post_list, $blog_Create, $blog_Edit, $blog_Delete, $permissionNav]);
 
         $editor->givePermissionTo($blog_List, $blog_Create, $blog_Edit, $permissionNav);
     }

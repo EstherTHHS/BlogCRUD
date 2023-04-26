@@ -11,6 +11,10 @@ class NoteController extends Controller
 
     public function __construct()
     {
+        $this->middleware('permission:notelist', ['only' => ['index']]);
+        $this->middleware('permission:noteCreate', ['only' => ['create']]);
+        $this->middleware('permission:noteEdit', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:noteDelete', ['only' => ['destory']]);
         $this->middleware('auth');
     }
     public function index()

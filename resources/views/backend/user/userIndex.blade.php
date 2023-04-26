@@ -6,7 +6,7 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1>Blog</h1>
+          <h1>User</h1>
         </div>
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
@@ -21,11 +21,13 @@
     </div><!-- /.container-fluid -->
   </section>
    
-  
+  @can('userAdd')
   <div class="d-flex"> 
     <a href="{{ route('user.create') }}" class="btn  btn-primary m-3 ml-auto p-2"><i class="fa-solid fa-square-plus" style="color: #c49003;"></i><span>ADD User</span></a>
   </div>
  
+  @endcan
+  
  
 
 <!-- Main content -->
@@ -61,20 +63,19 @@
                   <td>{{ $val->name }}</td>
                   <td>{{ $val->email}}</td>
                   <td>
-
                     @if(!@empty($val->getRoleNames()))
                       @foreach ($val->getRoleNames() as $role) 
                       <span>{{ $role }}</span>
-                      
-                        
                   @endforeach
                   @endif
                   </td>
-                 
+                  @can('userEdit')
                   <td>
                     <a href="{{ route('user.edit',$val->id) }}" class="btn btn-primary">
                     <i class="fa-solid  fa-pen-to-square"></i></a>
                   </td>
+                  @endcan
+                  @can('userDelete')
                   <td>
                     <form action="{{ route('user.destroy',$val->id) }}" method="POST">
                       @csrf
@@ -82,6 +83,8 @@
                       <button class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this record?')"><i class="fa-solid fa-trash-can"></i></button>
                       </form>
                     </td>
+                  @endcan
+                 
                   
                   
                 </tr>

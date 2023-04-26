@@ -46,6 +46,7 @@
                 <th scope="col">Id</th>
                 <th scope="col">BlogTitle</th>
                 <th scope="col">Blog</th>
+                <th scope="col">BlogImg</th>
                 <th scope="col" >Action</th>
                 <th scope="col">Action</th>
                 <th scope="col">Action</th>
@@ -58,6 +59,7 @@
                   <td>{{ $val->id }}</td>
                   <td>{{ $val->title }}</td>
                   <td>{{ $val->blog }}</td>
+                  <td><img src="{{ asset('images/'.$val->img) }}" alt="" style="width:50px"></td>
                   @can('blogedit')
                   <td>
                     <a href="{{ route('blog.edit',$val->id) }}" class="btn btn-primary">

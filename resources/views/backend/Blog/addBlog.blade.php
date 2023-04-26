@@ -47,7 +47,7 @@
       </div>
       <!-- /.card-header -->
       <!-- form start -->
-      <form action="{{ route("blog.store") }}" method="POST">
+      <form action="{{ route("blog.store") }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="card-body">
           <div class="form-group">
@@ -65,10 +65,10 @@
                 @endif
           </div>
           
-          {{-- <div class="form-check">
-            <input type="checkbox" class="form-check-input" id="exampleCheck1">
-            <label class="form-check-label" for="exampleCheck1">Check me out</label>
-          </div> --}}
+          <div class="mb-3">
+            <label for="formFile" class="form-label">Default file input example</label>
+            <input name="img" class="form-control" type="file" id="formFile">
+          </div>
         </div>
         <!-- /.card-body -->
 

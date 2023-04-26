@@ -9,6 +9,15 @@ use Spatie\Permission\Models\Role;
 
 class userController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:userList', ['only' => ['index']]);
+        $this->middleware('permission:userAdd', ['only' => ['create']]);
+        $this->middleware('permission:userEdit', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:userDelete', ['only' => ['destory']]);
+
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -42,8 +51,9 @@ class userController extends Controller
     {
         $data = $request->validate([
             'name' => 'required',
-            'email' => 'required',
-            'password' => 'required|min:5',
+            'email' => 'required|unique:users,email',
+            'password' => 'required|min:5|confirmed',
+            // 'password_confirmation' => 'required',
             'status' => 'required'
         ]);
         $user = User::create([
@@ -75,9 +85,6 @@ class userController extends Controller
     public function edit(User $user)
     {
         $userRole = Role::all();
-
-
-
         return (view('backend.user.editUser', compact('user', 'userRole')));
     }
 
@@ -92,7 +99,9 @@ class userController extends Controller
     {
         $data = $request->validate([
             'name' => 'required',
-            'email' => 'required',
+            'email' => 'required|email|unique:users,email,' . $id,
+            // 'email' => 'required|unique:users,email,except',
+
             'status' => 'required'
         ]);
 

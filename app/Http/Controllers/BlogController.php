@@ -60,6 +60,11 @@ class BlogController extends Controller
         // ]);
         // Blog::create($request->all());
         $data = $request->validated();
+        if ($request->hasFile('img')) {
+            $imageName = time() . '.' . $request->img->extension();
+            $request->img->move(public_path('images'), $imageName);
+        }
+        $data['img'] =  $imageName;
         Blog::create($data);
         return redirect()->route('blog.index');
     }

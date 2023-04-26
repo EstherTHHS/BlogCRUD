@@ -22,10 +22,12 @@
       </div>
     </div><!-- /.container-fluid -->
   </section>
+@can('noteCreate')
+<div class="d-flex"> 
+  <a href="{{ route('note.create') }}" class="btn  btn-light m-3 ml-auto p-2"><i class="fa-solid fa-square-plus" style="color: #c49003;"></i><span>ADD Note</span></a>
+</div>
 
-  <div class="d-flex"> 
-    <a href="{{ route('note.create') }}" class="btn  btn-light m-3 ml-auto p-2"><i class="fa-solid fa-square-plus" style="color: #c49003;"></i><span>ADD Note</span></a>
-  </div>
+@endcan
   
     <section class="content">
       <div class="container-fluid">
@@ -53,22 +55,30 @@
                       <th scope="row">{{$note->id}}</th>
                       <td>{{$note->title}}</td>
                       <td>{{$note->note}}</td>
+
+                      @can('noteEdit')
                       <td>
                         <a href="{{ route("note.edit",$note->id) }}" class="btn btn-primary">
                           <i class="fa-solid  fa-pen-to-square"></i>
                         </a>
                       </td>
+                      @endcan
+                      
                       <td>
                         <a href="{{route("note.show",$note->id)  }}" class="btn btn-success">
                           <i class="fa-solid fa-magnifying-glass"></i>
                         </a>
                       </td>
+
+                      @can('noteDelete')
                       <td>
                         <form action="{{ route("note.destroy",$note->id) }}" method="POST">
                           @csrf
                           <button class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this record?')"><i class="fa-solid fa-trash-can"></i></button>
                           </form>
                         </td>
+                      @endcan
+                      
                     </tr>
                   @endforeach
                   </tbody>
