@@ -6,7 +6,7 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1>Blog</h1>
+          <h1>AuthorList</h1>
         </div>
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
@@ -23,7 +23,7 @@
    
   @can('blogCreate')
   <div class="d-flex"> 
-    <a href="{{ route('blog.create') }}" class="btn  btn-light m-3 ml-auto p-2"><i class="fa-solid fa-square-plus" style="color: #c49003;"></i><span>ADD Blog</span></a>
+    <a href="{{ route('author.create') }}" class="btn  btn-light m-3 ml-auto p-2"><i class="fa-solid fa-square-plus" style="color: #c49003;"></i><span>ADD Author</span></a>
   </div>
   @endcan
  
@@ -42,13 +42,11 @@
             <table id="example2" class="table table-bordered table-hover">
               <thead>
               <tr>
-                <th scope="col">No</th>
+               
                 <th scope="col">Id</th>
-                <th scope="col">BlogTitle</th>
-                <th scope="col">Blog</th>
-                <th scope="col">BlogImg</th>
                 <th scope="col">AuthorName</th>
-                <th scope="col" >Action</th>
+                
+
                 <th scope="col">Action</th>
                 <th scope="col">Action</th>
               </tr>
@@ -56,34 +54,23 @@
               <tbody>
                 @foreach ($data as $val )
                 <tr>
-                  <th>{{ $loop->iteration }}</th>
+                 
                   <td>{{ $val->id }}</td>
-                  <td>{{ $val->title }}</td>
-                  <td>{{ $val->blog }}</td>
-                  <td><img src="{{ asset('images/'.$val->img) }}" alt="" style="width:150px"></td>
-                  <td>{{ $val->author->name }}</td>
-                  @can('blogedit')
-                  <td>
-                    <a href="{{ route('blog.edit',$val->id) }}" class="btn btn-primary">
-                    <i class="fa-solid  fa-pen-to-square"></i></a>
-                  </td>
-                  @endcan
+                  <td>{{ $val->name }}</td>
                  
                   <td>
-                    <a href="{{ route('blog.show',$val->id) }}" class="btn btn-success">
-                      <i class="fa-solid fa-magnifying-glass"></i>
-                    </a>
+                    <a href="{{ route('author.edit',$val->id) }}" class="btn btn-primary">
+                    <i class="fa-solid  fa-pen-to-square"></i></a>
                   </td>
-
-                  @can('blogdelete')
+                
                   <td>
-                    <form action="{{ route('blog.destroy',$val->id) }}" method="POST">
+                    <form action="{{ route('author.destroy',$val->id) }}" method="POST">
                       @csrf
                       @method("DELETE")
                       <button class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this record?')"><i class="fa-solid fa-trash-can"></i></button>
                       </form>
                     </td>
-                  @endcan
+                  
                   
                 </tr>
                 </tr>

@@ -7,7 +7,7 @@
     <div class="col col-6 justify-content-center">
 
         <h1>Edit POST</h1>
-      <form action="{{ route("post.update",$data->id) }}" method="POST">
+      <form action="{{ route("post.update",$data->id) }}" method="POST" enctype="multipart/form-data">
       @csrf
      @method("PATCH")
       
@@ -32,8 +32,16 @@
               <label for="" class="form-label">Checked or Unchecked</label>
               <div>
                 <input type="checkbox" name="is_active" {{($data->is_active===1)?"checked":""}} />
-               
-              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="formFile" class="form-label">Default file input example</label>
+              <input name="image" class="form-control" type="file" value="{{$data->image}}" id="formFile">
+              {{ $data->image }}
+              @if($errors->has('image'))
+                <div class="error text-danger">{{ $errors->first('image') }}</div>
+              @endif
+            </div>
               
 
             <a href="{{ url('post')}}" class="btn btn-lg btn-primary m-3">BACK</a>

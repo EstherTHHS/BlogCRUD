@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PostRequest;
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
@@ -44,20 +46,54 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PostRequest $request)
     {
 
-        $request->validate([
-            'title' => 'required',
-            'post' => 'required'
-        ]);
+        // $request->validate([
+        //     'title' => 'required',
+        //     'post' => 'required',
+        //     "is_active" => 'required',
+        // ]);
 
-        Post::create([
-            "title" => $request->title,
-            "post" => $request->post,
-            "is_active" => $request->has("is_active") ? 1 : 0
-        ]);
+        // Post::create([
+        //     "title" => $request->title,
+        //     "post" => $request->post,
+        //     "is_active" => $request->is_active
+        // ]);
+        // return redirect()->route('post.index');
+
+        $data = $request->validated();
+
+        if ($request->hasFile('image')) {
+            $imageName = time() . '.' . $request->image->extension();
+            $request->image->storeAs('public/postimage', $imageName);
+            // Storage::putFileAs('public/postimage/', $request->file('image'), $imageName);
+        }
+        $data['image'] = $imageName;
+        // dd($data['image']);
+        $data['is_active'] = $request->has("is_active") ? 1 : 0;
+        // $data = array_merge($data, ['image' => $imageName, 'is_active' => $request->has("is_active") ? 1 : 0]);
+        Post::create($data);
+
         return redirect()->route('post.index');
+
+        // if ($request->hasFile('image')) {
+        //     $imgName = time() . '.' . $request->image->extension();
+        //     Storage::putFileAs('public/postImage', $request->file('image'), $imgName);
+        // }
+        // $data['image'] = $imgName;
+
+
+
+
+        // Post::create([
+        //     "title" => $data['title'],
+        //     "post" => $data['post'],
+        //     "is_active" => $request->has("is_active") ? 1 : 0,
+        //     "image" => $imgName
+        // ]);
+
+
     }
 
     /**
@@ -91,20 +127,50 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(PostRequest $request, $id)
     {
-        $request->validate([
-            'title' => 'required',
-            'post' => 'required'
+        // $request->validate([
+        //     'title' => 'required',
+        //     'post' => 'required',
+        //     "is_active" => 'required',
 
-        ]);
+        // ]);
 
+
+        // $result->update([
+        //     "title" => $request->title,
+        //     "post" => $request->post,
+        //     "is_active" => $request->is_active
+        // ]);
+        // return redirect()->route('post.index');
+        // $request->validate([
+        //     'title' => 'required',
+        //     'post' => 'required'
+
+        // ]);
+        // $result = Post::where('id', $id)->first();
+        // $result->update([
+        //     "title" => $request->title,
+        //     "post" => $request->post,
+        //     "is_active" => $request->has("is_active") ? 1 : 0
+        // ]);
         $result = Post::where('id', $id)->first();
-        $result->update([
-            "title" => $request->title,
-            "post" => $request->post,
-            "is_active" => $request->has("is_active") ? 1 : 0
-        ]);
+        $data = $request->validated();
+
+        if ($request->hasFile('image')) {
+            $imageName = time() . '.' . $request->image->extension();
+            $request->image->storeAs('public/postimage', $imageName);
+            // Storage::putFileAs('public/postimage/', $request->file('image'), $imageName);
+            $data['image'] = $imageName;
+            // dd($data['image']);
+        } else {
+            $data['image'] = $result->image;
+        }
+        // dd($data['image']);
+        $data['is_active'] = $request->has("is_active") ? 1 : 0;
+
+        // $data = array_merge($data, ['image' => $imageName, 'is_active' => $request->has("is_active") ? 1 : 0]);
+        $result->update($data);
         return redirect()->route('post.index');
     }
 

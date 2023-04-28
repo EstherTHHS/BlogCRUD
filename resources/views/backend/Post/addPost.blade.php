@@ -9,7 +9,7 @@
         <h1>ADD POST</h1>
         
       
-      <form action="{{ route("post.store") }}" method="POST">
+      <form action="{{ route("post.store") }}" method="POST" enctype="multipart/form-data">
       @csrf
             <div class="mb-3 ">
                 <label for="exampleFormControlInput1" class="form-label"> POST Title</label>
@@ -31,6 +31,11 @@
               <label for="" class="form-label">Checked or Unchecked</label>
               <div>
                   <input type="checkbox" name="is_active"/>
+              </div>
+
+              <div class="mb-3">
+                <label for="formFile" class="form-label">Default file input example</label>
+                <input name="image" class="form-control" type="file" id="formFile">
               </div>
           </div>
 

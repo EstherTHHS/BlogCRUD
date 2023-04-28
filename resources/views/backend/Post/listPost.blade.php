@@ -45,6 +45,7 @@
                   <th scope="col">Post Title</th>
                   <th scope="col">Post</th>
                   <th scope="col">Is_Active</th>
+                  <th scope="col">Image</th>
                   <th scope="col">Aciton</th>
                   <th scope="col">Aciton</th>
                   <th scope="col">Aciton</th>
@@ -58,7 +59,10 @@
       <td>{{$val->title}}</td>
       <td>{{$val->post}}</td>
       {{-- <td><input type="checkbox" {{($val->is_active===1)?"checked":""}}/></td> --}}
-      <td> {{ ((bool) $val->is_active) ? "active" : "not active" }}</td>
+      <td> {{ ((bool) $val->is_active) ? "Active" : "Not_Active" }}</td>
+  
+      <td><img src="{{ asset('storage/postimage/' .  $val->image)  }}" alt="{{ $val->title }}" style="width:50px"></td>
+      
       <td>
         <a href="{{ route('post.edit',$val->id) }}" class="btn btn-primary">
         <i class="fa-solid  fa-pen-to-square"></i></a>

@@ -13,13 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('posts', function (Blueprint $table) {
-            $table->id();
-            $table->string('title', 128);
-            $table->string('post', 512);
-            $table->boolean('is_active');
-            // $table->boolean('is_active')->default(false);
-            $table->timestamps();
+        Schema::table('posts', function (Blueprint $table) {
+
+            $table->string('image')->nullable()->after('is_active');
         });
     }
 
@@ -30,6 +26,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('posts');
+        Schema::table('posts', function (Blueprint $table) {
+            //
+        });
     }
 };

@@ -246,8 +246,9 @@
        
         
       
-        @can('Authorization')
+       
         <li class="nav-item" >
+          @can('Authorization')
           <a href="#" class="nav-link">
             <i class="fa-regular fa-user fa-beat-fade" style="color: #d67f05;"></i>
             <p>
@@ -255,6 +256,7 @@
              
             </p>
           </a>
+          @endcan
           <ul class="nav nav-treeview">
             @can('roleList')
             <li class="nav-item">
@@ -263,10 +265,10 @@
                 <p>Roles</p>
               </a>
             </li>
-            @endcan
+          @endcan 
            
 
-            @can('permission_list')
+         @can('permission_list') 
             <li class="nav-item">
             
               <a href="{{ route("permission.index") }}" class="nav-link">
@@ -274,21 +276,21 @@
                 <p>Permissions</p>
               </a>
             </li>
-            @endcan
+          @endcan 
 
-            @can('userList')
+            {{-- @can('userList') --}}
             <li class="nav-item">
               <a href="{{ route("user.index") }}" class="nav-link">
                 <i class="fa-solid fa-robot fa-beat-fade" style="color: #f49d25;"></i>
                 <p>Pro-Users</p>
               </a>
             </li>
-            @endcan
+            {{-- @endcan --}}
             
           </ul>
         </li>
         </ul>
-        @endcan
+      
       </nav>
       <!-- /.sidebar-menu -->
     </div>

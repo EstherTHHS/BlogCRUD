@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\NoteController;
@@ -31,7 +32,7 @@ Route::resource('post', PostController::class);
 Route::resource('permission', PermissionController::class);
 Route::resource('user', userController::class);
 Route::resource('role', roleController::class);
-
+Route::resource('author', AuthorController::class);
 
 //manually routeCRUD
 Route::get('note', [NoteController::class, 'index'])->name('note.index');

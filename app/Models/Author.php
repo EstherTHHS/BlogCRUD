@@ -5,8 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Post extends Model
+class Author extends Model
 {
     use HasFactory;
-    protected $fillable = ['title', 'post', 'is_active', 'image'];
+    protected $fillable = ['name'];
 }
