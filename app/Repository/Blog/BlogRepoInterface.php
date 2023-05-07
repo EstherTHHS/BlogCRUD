@@ -9,6 +9,7 @@ interface BlogRepoInterFace
   public function get();
   public function create();
   public function show($data);
+  // public function edit($data);
   //parameter must be anything name variable
 
 }

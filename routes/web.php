@@ -24,7 +24,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-  return view('auth.login');
+  return view('backend.welcome');
 });
 //route with resource
 Route::resource('blog', BlogController::class);
@@ -54,7 +54,8 @@ Auth::routes(['register' => false]);
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
-
+//for localization  step 1 adding route for customizing localization
+Route::get('/lang/{code}', [BlogController::class, 'locale']);
 //route ::prefix group route
 
 // Route::prefix('admin')->group(function () {

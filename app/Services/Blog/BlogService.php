@@ -15,9 +15,8 @@ class BlogService implements BlogServiceInterface
       $imageName = time() . '.' . $data['img']->extension();
       $data['img']->move(public_path('images'), $imageName);
       $data['img'] =  $imageName;
-    } else {
-      $data['img'] =  $data['img'];
     }
+
 
     return Blog::create($data);
   }
@@ -34,8 +33,6 @@ class BlogService implements BlogServiceInterface
     // else {
     //   $data['img'] =  $result->img;
     // }
-
-
     return $result->update($data);
   }
 }

@@ -23,7 +23,7 @@
    
   @can('blogCreate')
   <div class="d-flex"> 
-    <a href="{{ route('blog.create') }}" class="btn  btn-light m-3 ml-auto p-2"><i class="fa-solid fa-square-plus" style="color: #c49003;"></i><span>ADD Blog</span></a>
+    <a href="{{ route('blog.create') }}" class="btn  btn-light m-3 ml-auto p-2"><i class="fa-solid fa-square-plus" style="color: #c49003;"></i><span>{{ __('message.add') }}</span></a>
   </div>
   @endcan
  
@@ -35,6 +35,7 @@
       <div class="col-12">
         <div class="card">
           <div class="card-header">
+            <h3>{{ __('message.welcome') }}</h3>
             <h3 class="card-title">DataTable with minimal features & hover style</h3>
           </div>
           <!-- /.card-header -->

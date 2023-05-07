@@ -5,7 +5,7 @@
   <div class="container-fluid">
     <div class="row mb-2">
       <div class="col-sm-6">
-        <h1 class="m-0">Dashboard</h1>
+        <h1 class="m-0">@lang('message.dashboard')</h1>
       </div><!-- /.col -->
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
@@ -13,6 +13,17 @@
           <li class="breadcrumb-item active">Dashboard v1</li>
         </ol>
       </div><!-- /.col -->
+      {{-- step 2 add route and dropdown --}}
+      <div class="dropdown col-sm-6">
+        <button class="btn btn-warning dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+         Language
+        </button>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href="lang/en">English</a></li>
+          <li><a class="dropdown-item" href="lang/jp">Japan</a></li>
+          <li><a class="dropdown-item" href="lang/mm">Myanmar</a></li>
+        </ul>
+      </div>
     </div><!-- /.row -->
   </div><!-- /.container-fluid -->
 </div>
@@ -29,7 +40,7 @@
           <div class="inner">
             <h3>150</h3>
 
-            <p>New Orders</p>
+            <p>@lang('message.order')</p>
           </div>
           <div class="icon">
             <i class="ion ion-bag"></i>
@@ -44,7 +55,7 @@
           <div class="inner">
             <h3>53<sup style="font-size: 20px">%</sup></h3>
 
-            <p>Bounce Rate</p>
+            <p>@lang('message.rate')</p>
           </div>
           <div class="icon">
             <i class="ion ion-stats-bars"></i>
@@ -59,7 +70,7 @@
           <div class="inner">
             <h3>44</h3>
 
-            <p>User Registrations</p>
+            <p>@lang('message.register')</p>
           </div>
           <div class="icon">
             <i class="ion ion-person-add"></i>
@@ -74,7 +85,7 @@
           <div class="inner">
             <h3>65</h3>
 
-            <p>Unique Visitors</p>
+            <p>@lang('message.visitor')</p>
           </div>
           <div class="icon">
             <i class="ion ion-pie-graph"></i>

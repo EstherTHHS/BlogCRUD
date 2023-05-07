@@ -3,7 +3,6 @@
 //path
 namespace App\Repository\Blog;
 
-
 use App\Models\Author;
 use App\Models\Blog;
 

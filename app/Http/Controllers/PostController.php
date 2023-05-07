@@ -157,6 +157,7 @@ class PostController extends Controller
         $result = Post::where('id', $id)->first();
         $data = $request->validated();
 
+
         if ($request->hasFile('image')) {
             $imageName = time() . '.' . $request->image->extension();
             $request->image->storeAs('public/postimage', $imageName);

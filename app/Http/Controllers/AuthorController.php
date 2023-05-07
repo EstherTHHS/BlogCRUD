@@ -61,6 +61,7 @@ class AuthorController extends Controller
      */
     public function edit(Author $author)
     {
+        return view("backend.Author.editAuthor", compact('author'));
     }
 
     /**
@@ -70,9 +71,11 @@ class AuthorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(AuthoerRequest $request, Author $author)
     {
-        //
+        $data = $request->validated();
+        $author->update($data);
+        return redirect()->route("author.index");
     }
 
     /**
@@ -81,8 +84,9 @@ class AuthorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Author $author)
     {
-        //
+        $author->delete();
+        return redirect()->route("author.index");
     }
 }

@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
 
@@ -49,20 +51,36 @@ class userController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->validate([
-            'name' => 'required',
-            'email' => 'required|unique:users,email',
-            'password' => 'required|min:5|confirmed',
-            // 'password_confirmation' => 'required',
-            'status' => 'required'
-        ]);
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password)
-        ]);
-        $user->assignRole($data['status']);
-        return redirect()->route('user.index');
+
+        try {
+
+            $data = $request->validate([
+                'name' => 'required',
+                'email' => 'required|unique:users,email',
+                'password' => 'required|min:5|confirmed',
+                // 'password_confirmation' => 'required',
+                'status' => 'required'
+            ]);
+            DB::beginTransaction();
+            $user = User::create([
+                'name' => $data['name'],
+                'email' => $data['email'],
+                'password' => Hash::make($data['password'])
+            ]); //for user table
+            // $user->assignRole($data['status']);  //for model has role 
+            $user->assignRole(0);
+            DB::commit();
+            return redirect()->route('user.index');
+        } catch (Exception $e) {
+            DB::rollBack(); //for the catch errors 
+            echo $e->getMessage();
+        }
+
+        // return $user;
+
+
+
+
     }
 
     /**
@@ -123,7 +141,7 @@ class userController extends Controller
      */
     public function destroy(User $user)
     {
-        // $user->delete();
-        // return redirect()->route('user.index');
+        //     $user->delete();
+        //     return redirect()->route('user.index');
     }
 }

@@ -9,7 +9,9 @@ use App\Models\Blog;
 use App\Repository\Blog\BlogRepoInterFace;
 use App\Services\Blog\BlogServiceInterface;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class BlogController extends Controller
 {
@@ -34,7 +36,8 @@ class BlogController extends Controller
      */
     public function index()
     {
-
+        //Configuring The Locale default change in one page
+        // App::setLocale('jp');
 
         //
         //relationship 
@@ -58,6 +61,8 @@ class BlogController extends Controller
     public function create()
     {
 
+        $username =  Auth::user()->name;
+        Log::info("Add Blog", ["User $username viewed add blog page."]);
         $author = $this->blogRepo->create();
         return view("backend.Blog.addBlog", compact('author'));
     }
@@ -106,6 +111,7 @@ class BlogController extends Controller
         $result = Blog::where('id', $id)->first();
         // dd($result);
         $author = Author::all();
+        // $result = $this->blogRepo->edit($id);
         return view("backend.Blog.editBlog", compact('result', 'author'));
     }
 
@@ -120,7 +126,7 @@ class BlogController extends Controller
     {
 
         // $result = Blog::where('id', $id)->first();
-        // // $result->update($request->all());
+        // $result->update($request->all());
         // $data = $request->validated();
         // if ($request->hasFile('img')) {
         //     $imageName = time() . '.' . $request->img->extension();
@@ -149,5 +155,16 @@ class BlogController extends Controller
         $result = Blog::where('id', $id)->first();
         $result->delete();
         return redirect()->route('blog.index');
+    }
+
+
+    //step 3  catch parameter from url
+    //step 4 creat new php artisan make middleware : localMiddleware to effect every page language change 
+    public function locale($code)
+    {
+        // echo $lang;
+        // session(['locale' => $lang]);
+        session()->put("locale", $code);
+        return back();
     }
 }
