@@ -189,10 +189,10 @@
               <li class="nav-item menu-open">
                 <a href={{route('admin')}} class="nav-link active">
                   <i class="nav-icon fas fa-tachometer-alt fa-beat-fade"></i>
-                  <p>
-                    Dashboard
+                 
+                    
+                    <p>@lang('message.dashboard')</p>
                   
-                  </p>
                 </a>
               
               </li>
